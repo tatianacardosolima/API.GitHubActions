@@ -1,0 +1,29 @@
+name: CI / CD Pipeline
+
+on:
+    push:
+  branches:
+    - main
+
+jobs:
+  build:
+    name: Executando o job de testes
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test --configuration Release --no-restore --verbosity normal
