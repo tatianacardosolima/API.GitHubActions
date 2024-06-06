@@ -23,10 +23,10 @@ jobs:
           dotnet-version: 8.x
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore ./src/Fiap.Clientes.API.sln
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore ./src/Fiap.Clientes.API.sln
 
       - name: Run unit tests
-        run: dotnet test --configuration Release --no-restore --verbosity normal ./Tests/Fiap.Clientes.Unit.Tests.csproj
+        run: dotnet test --configuration Release --no-restore --verbosity normal ./src/Tests/Fiap.Clientes.Unit.Tests.csproj
